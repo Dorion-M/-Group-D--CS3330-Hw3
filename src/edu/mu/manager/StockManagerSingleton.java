@@ -62,6 +62,35 @@ public class StockManagerSingleton {
             return false;
         }
     }
+    
+    public boolean updateItemPrice(MediaProduct product, double newPrice)
+    {
+		for(MediaProduct item : inventory)
+		{
+			if(item.equals(product))
+			{
+				item.setPrice(newPrice);
+				return true;
+			}
+		}
+		return false;
+    }
+    
+    public boolean addItem(MediaProduct product)
+    {
+		return false;
+    	
+    }
+    
+    public boolean removeItem(MediaProduct product)
+    {
+		return false;
+    	
+    }
+    
+    
+    
+    
 
 
 
