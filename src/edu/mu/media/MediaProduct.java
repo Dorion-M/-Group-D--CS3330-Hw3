@@ -2,6 +2,7 @@ package edu.mu.media;
 
 public class MediaProduct {
 	
+	protected String type;
 	protected String title;
 	protected Double price;
 	protected int year;
@@ -9,8 +10,9 @@ public class MediaProduct {
 	
 	
 
-	public MediaProduct(String title, Double price, int year, Genre genre) {
+	public MediaProduct(String type, String title, Double price, int year, Genre genre) {
 		super();
+		this.type = type;
 		this.title = title;
 		this.price = price;
 		this.year = year;
@@ -24,6 +26,14 @@ public class MediaProduct {
 	    this.genre = copy.genre;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
