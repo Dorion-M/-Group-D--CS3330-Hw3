@@ -68,7 +68,7 @@ public class MediaProduct {
 
 	@Override
 	public String toString() {
-		return "Title: " + title + ", Price: " + price + ", Year: " + year + ", Genre: " + genre;
+		return "Type: " + type + "Title: " + title + ", Price: " + price + ", Year: " + year + ", Genre: " + genre;
 	}
 	
 	

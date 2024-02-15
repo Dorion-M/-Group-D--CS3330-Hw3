@@ -1,6 +1,8 @@
 package edu.mu.manager;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +44,13 @@ public class StockManagerSingleton {
                 MediaProduct product;
                 switch (type) {
                     case "Vinyl":
-                        product = new VinylRecordProduct(title, price, year, genre);
+                        product = new VinylRecordProduct(type, title, price, year, genre);
                         break;
                     case "CD":
-                        product = new CDRecordProduct(title, price, year, genre);
+                        product = new CDRecordProduct(type, title, price, year, genre);
                         break;
                     case "Tape":
-                        product = new TapeRecordProduct(title, price, year, genre);
+                        product = new TapeRecordProduct(type, title, price, year, genre);
                         break;
                     default:
                         continue;
@@ -78,20 +80,129 @@ public class StockManagerSingleton {
     
     public boolean addItem(MediaProduct product)
     {
-		return false;
+		if(inventory.add(product)) 
+		{
+			return true;
+		}
+    	
+    	return false;
     	
     }
     
     public boolean removeItem(MediaProduct product)
     {
-		return false;
+    	
+    	for(MediaProduct item : inventory) 
+		{
+    		if(item.equals(product)) 
+    		{
+    			inventory.remove(item);
+    			return true;
+    		}
+		}
+    	
+    	return false;
     	
     }
     
+    public boolean saveStock() {
+    	
+    	try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(inventoryFilePath));
+			
+			writer.write("Type,Title,Price,Year,Genre\n");
+			
+			for(MediaProduct item : inventory) 
+			{
+				String line = String.format("%s,%s,%.2f,%d,%s\n", item.getType(), item.getTitle(), item.getPrice(), item.getYear(), item.getGenre().toString().toUpperCase());
+				
+				writer.write(line);
+			}
+		
+			writer.close();
+			return true;
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+    	
+    }
     
+    public ArrayList<MediaProduct> getMediaProductBelowPrice(int maxprice)
+    {
+    	ArrayList<MediaProduct> listBelowPrice = new ArrayList<>();
+    	
+    	for(MediaProduct item: inventory) 
+    	{
+    		if(item.getPrice() < maxprice) 
+    		{
+    			listBelowPrice.add(item);
+    		}
+    	}
+    	    	
+    	return listBelowPrice;
+    	
+	}
     
+    public void printListOfMediaProduct(ArrayList<MediaProduct> productList) 
+    {
+    	for(MediaProduct item: productList) 
+    	{
+    		System.out.println(item.toString());
+    	}
+    }
+
+    public ArrayList<MediaProduct> getVinylRecordList(ArrayList<MediaProduct> productList)
+    {
+	
+    	ArrayList<MediaProduct> vinylList = new ArrayList<>();    	
+    	
+    	for(MediaProduct item: productList) 
+    	{
+    		if(item.getType() == "Vinyl") 
+    		{
+    			vinylList.add(item);
+    		}
+    	}
+    	
+    	return vinylList;
+		
+    }
     
-
-
-
+    public ArrayList<MediaProduct> getTapeRecordList(ArrayList<MediaProduct> productList)
+    {
+	
+    	ArrayList<MediaProduct> tapeList = new ArrayList<>();    	
+    	
+    	for(MediaProduct item: productList) 
+    	{
+    		if(item.getType() == "Tape") 
+    		{
+    			tapeList.add(item);
+    		}
+    	}
+    	
+    	return tapeList;
+		
+    }
+    
+    public ArrayList<MediaProduct> getCDRecordList(ArrayList<MediaProduct> productList)
+    {
+	
+    	ArrayList<MediaProduct> cdList = new ArrayList<>();    	
+    	
+    	for(MediaProduct item: productList) 
+    	{
+    		if(item.getType() == "CD") 
+    		{
+    			cdList.add(item);
+    		}
+    	}
+    	
+    	return cdList;
+		
+    }
+    
 }
