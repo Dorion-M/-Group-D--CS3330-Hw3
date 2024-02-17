@@ -37,3 +37,8 @@ To run the project:
 2. Open the project in your preferred IDE.
 3. Make sure you have JDK installed on your machine.
 4. Compile and run the `Main.java` file.
+
+## Contributors
+- Seth keenan
+- Paul Maschhoff
+- Dorion Massengill
