@@ -154,55 +154,37 @@ public class StockManagerSingleton {
     	}
     }
 
-    public ArrayList<MediaProduct> getVinylRecordList(ArrayList<MediaProduct> productList)
-    {
-	
-    	ArrayList<MediaProduct> vinylList = new ArrayList<>();    	
-    	
-    	for(MediaProduct item: productList) 
-    	{
-    		if(item.getType() == "Vinyl") 
-    		{
-    			vinylList.add(item);
-    		}
-    	}
-    	
-    	return vinylList;
-		
+    public ArrayList<MediaProduct> getVinylRecordList(ArrayList<MediaProduct> productList) {
+        ArrayList<MediaProduct> vinylList = new ArrayList<>();
+        for (MediaProduct item : productList) {
+            if ("Vinyl".equalsIgnoreCase(item.getType())) {
+                vinylList.add(item);
+            }
+        }
+        return vinylList;
     }
     
-    public ArrayList<MediaProduct> getTapeRecordList(ArrayList<MediaProduct> productList)
-    {
-	
-    	ArrayList<MediaProduct> tapeList = new ArrayList<>();    	
-    	
-    	for(MediaProduct item: productList) 
-    	{
-    		if(item.getType() == "Tape") 
-    		{
-    			tapeList.add(item);
-    		}
-    	}
-    	
-    	return tapeList;
-		
+    
+    
+    
+    public ArrayList<MediaProduct> getTapeRecordList(ArrayList<MediaProduct> productList) {
+        ArrayList<MediaProduct> tapeList = new ArrayList<>();
+        for (MediaProduct item : productList) {
+            if ("Tape".equalsIgnoreCase(item.getType())) {
+                tapeList.add(item);
+            }
+        }
+        return tapeList;
     }
     
-    public ArrayList<MediaProduct> getCDRecordList(ArrayList<MediaProduct> productList)
-    {
-	
-    	ArrayList<MediaProduct> cdList = new ArrayList<>();    	
-    	
-    	for(MediaProduct item: productList) 
-    	{
-    		if(item.getType() == "CD") 
-    		{
-    			cdList.add(item);
-    		}
-    	}
-    	
-    	return cdList;
-		
+    public ArrayList<MediaProduct> getCDRecordList(ArrayList<MediaProduct> productList) {
+        ArrayList<MediaProduct> cdList = new ArrayList<>();
+        for (MediaProduct item : productList) {
+            if ("CD".equalsIgnoreCase(item.getType())) {
+                cdList.add(item);
+            }
+        }
+        return cdList;
     }
     
 }
